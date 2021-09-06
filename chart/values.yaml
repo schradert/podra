@@ -1,0 +1,4 @@
+postgresql:
+  postgresqlUsername: admin
+  existingSecret: postgresql-secret
+  postgresqlDatabase: shlif-ingestion

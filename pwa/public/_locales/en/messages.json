@@ -1,0 +1,20 @@
+{
+    "extDescription": {
+        "message": "Organize & Search Content Saved and Synced with Browser Shelf",
+        "description": "Extension manifest description"
+    },
+    "extName": {
+        "message": "Browser Shelf",
+        "description": "Extension name"
+    },
+    "example": {
+        "message": "Ex: $name$",
+        "description": "Placeholder for name submission in forms",
+        "placeholders": {
+            "name": {
+                "content": "$John Doe",
+                "example": "This guy John Doe..."
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "extDescription": {
+        "message": "Organizar e Buscar Conteúdo Poupado e Sincronizado com Prateleira do Navegador",
+        "description": "A descrição da extensão"
+    },
+    "extName": {
+        "message": "Prateleira do Navegador",
+        "description": "O nome da extensão"
+    }
+}

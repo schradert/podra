@@ -1,0 +1,14 @@
+apiVersion: v2
+name: chart
+description: A Helm chart for deploying Browser Shelf
+type: application
+version: 0.1.0
+appVersion: 0.1.0
+dependencies:
+  - name: kafka
+    version: "13.1.4"
+    repository: https://charts.bitnami.com/bitnami
+  - name: postgresql
+    version: "10.8.0"
+    repository: https://charts.bitnami.com/bitnami
+    
