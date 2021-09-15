@@ -1,10 +1,6 @@
 {
-    "extDescription": {
-        "message": "Organizar y Buscar Contenido Guardado y Sincronizado con Estante del Navegador",
-        "description": "La descripción de la extensión"
-    },
-    "extName": {
-        "message": "Estante del Navegador",
-        "description": "El nombre de la extensión"
-    }
+  "extDescription": {
+    "message": "Organizar y Buscar Contenido Guardado y Sincronizado con Estante del Navegador",
+    "description": "La descripción de la extensión"
+  }
 }

@@ -1,10 +1,16 @@
 {
-    "extDescription": {
-        "message": "Organizar e Buscar Conteúdo Poupado e Sincronizado com Prateleira do Navegador",
-        "description": "A descrição da extensão"
-    },
-    "extName": {
-        "message": "Prateleira do Navegador",
-        "description": "O nome da extensão"
+  "extDescription": {
+    "message": "Acompanhe os destaques da Internet com o Podra",
+    "description": "A descrição da extensão"
+  },
+  "example": {
+    "message": "Ex: $name$",
+    "description": "Marcador de posição na submissão de nomes em forma",
+    "placeholders": {
+      "name": {
+        "content": "$Fulano",
+        "example": "Rapaz fulano"
+      }
     }
+  }
 }

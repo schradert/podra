@@ -1,10 +1,10 @@
 {
     "extDescription": {
-        "message": "Organize & Search Content Saved and Synced with Browser Shelf",
+        "message": "Keep up with highlights from internet communities with Podra, your web desktop with newsboard analytics.",
         "description": "Extension manifest description"
     },
     "extName": {
-        "message": "Browser Shelf",
+        "message": "Podra",
         "description": "Extension name"
     },
     "example": {
