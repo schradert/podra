@@ -7,5 +7,6 @@
     "downlevelIteration": true,
     "experimentalDecorators": true
   },
-  "include": ["producers/*", "consumers/*"],
+  "include": ["producers", "consumers"],
+  "exclude": ["dist"]
 }
