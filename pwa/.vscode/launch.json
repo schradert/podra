@@ -1,0 +1,19 @@
+{
+  "configurations": [
+    {
+      "name": "Jest Tests",
+      "request": "launch",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": [
+        "test",
+        "--runInBand",
+        // ""
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "pwa-node"
+    }
+  ]
+
+}

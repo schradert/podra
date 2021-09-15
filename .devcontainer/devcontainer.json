@@ -1,0 +1,13 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.194.0/containers/alpine
+{
+	"name": "Podra",
+  "dockerFile": "Dockerfile",
+	"forwardPorts": [3000],
+	"remoteUser": "vscode",
+	
+	"settings": {},
+	"extensions": [
+    "esbenp.prettier-vscode"
+  ],
+}
