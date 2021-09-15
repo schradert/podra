@@ -1,0 +1,48 @@
+{
+  "name": "__MSG_extName__",
+  "version": "0.0.1",
+  "default_locale": "en",
+  "author": "Tristan Schrader",
+  "description": "__MSG_extDescription__",
+  "permissions": [
+      "activeTab", 
+      "declarativeContent", 
+      "storage",
+      "contextMenus",
+      "tabs",
+      "bookmarks",
+      "management"
+  ],
+  "oauth2": {
+    "client_id": "944054137525-gi7heqbn9ge1n6dho6eh3jrltkfc003f.apps.googleusercontent.com",
+    "scopes": [
+
+    ]
+  },
+  "background": {
+      "scripts": [
+          "hotReload.js",
+          "bgContext.js"
+      ],
+      "persistent": false
+  },
+  "options_page": "options.html",
+  "browser_action": {
+      "default_popup": "index.html",
+      "default_title": "__MSG_extName__",
+      "default_icon": {
+          "16": "images/get_started16.png",
+          "32": "images/get_started32.png",
+          "48": "images/get_started48.png",
+          "128": "images/get_started128.png"
+      }
+  },
+  "icons": {
+      "16": "images/get_started16.png",
+      "32": "images/get_started32.png",
+      "48": "images/get_started48.png",
+      "128": "images/get_started128.png"
+  },
+  "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
+  "manifest_version": 2
+}
