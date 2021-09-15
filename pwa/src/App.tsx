@@ -1,26 +1,24 @@
-import React from 'react';
+import type { FC } from "react";
 import {
   BrowserRouter,
   Switch,
   Route,
   Redirect,
   RouteProps,
-} from 'react-router-dom';
-import { createState, useState, State } from '@hookstate/core';
-import { FilterType, ItemProps } from './components/molecules';
-import { GoogleAuth, Home } from './components/templates';
+} from "react-router-dom";
+import { createState, useState, State } from "@hookstate/core";
+import { GoogleAuth, Home, FilterType, ItemProps } from "./components";
 
 export type ServiceType = {
   name: string;
   status: string;
 };
 export interface AppState {
-  services: ServiceType[],
-  filtering: boolean,
-  configuring: boolean,
-  integrating: boolean,
+  services: ServiceType[];
+  filtering: boolean;
+  configuring: boolean;
+  integrating: boolean;
 }
-
 
 interface FeatureType {
   filter: FilterType;
@@ -31,10 +29,15 @@ export interface FeatureState {
   features: FeatureType[];
 }
 export const FILTERS = [
-  'url', 'words.title', 'words.author', 'words.date', 'words.length'];
+  "url",
+  "words.title",
+  "words.author",
+  "words.date",
+  "words.length",
+];
 export const featureState = createState<FeatureState>({
   results: [],
-  features: FILTERS.map(name => ({ filter: { name } }))
+  features: FILTERS.map((name) => ({ filter: { name } })),
 });
 export const metaState = createState<AppState>({
   services: [],
@@ -42,29 +45,28 @@ export const metaState = createState<AppState>({
   configuring: false,
   integrating: false,
 });
-type authState = { 
-  token?: string; 
+type authState = {
+  token?: string;
 };
 const authState = createState<authState>({});
 
 export const useAuth = (): State<authState> => useState<authState>(authState);
 
-const App: React.FC = () => {
+const App: FC = () => {
   return (
-  <BrowserRouter>
-    <Switch>
-      <PrivateRoute exact path="/" component={Home} />
-      <Route path="/login" component={GoogleAuth} />
-    </Switch>
-  </BrowserRouter>);
+    <BrowserRouter>
+      <Switch>
+        <PrivateRoute exact path="/" component={Home} />
+        <Route path="/login" component={GoogleAuth} />
+      </Switch>
+    </BrowserRouter>
+  );
 };
 
-const PrivateRoute: React.FC<RouteProps> = (
-  props: RouteProps
-) => {
+const PrivateRoute: FC<RouteProps> = (props: RouteProps) => {
   const auth = useAuth();
   if (auth.token.get()) return <Route {...props} />;
-  return <Redirect to='/login' />;
+  return <Redirect to="/login" />;
 };
 
 export default App;
