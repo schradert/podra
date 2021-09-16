@@ -3,9 +3,10 @@ apiVersion: k3d.io/v1alpha2
 kind: Simple
 name: podra
 servers: 1
-agents: 3
+agents: 2
+image: docker.io/rancher/k3s:v1.21.1-k3s1
 volumes:
-  - volume: ./data:/tmp/data
+  - volume: data:/tmp/data
     nodeFilters:
       - agent[*]
 labels:
@@ -15,6 +16,3 @@ labels:
   - label: node=worker2
     nodeFilters:
       - agent[1]
-  - label: node=worker3
-    nodeFilters:
-      - agent[2]

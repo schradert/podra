@@ -15,5 +15,10 @@
     {
       "path": "../spark"
     }
-  ]
+  ],
+  "settings": {
+    "yaml.schemas": {
+      "https://raw.githubusercontent.com/rancher/k3d/main/pkg/config/v1alpha2/schema.json": "k3d-cluster.yaml",
+    }
+  }
 }
