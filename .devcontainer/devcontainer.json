@@ -5,9 +5,21 @@
   "dockerFile": "Dockerfile",
 	"forwardPorts": [3000],
 	"remoteUser": "vscode",
-	
-	"settings": {},
+  "remoteEnv": {
+    "PATH": "${containerEnv:HOME}/.yarn/bin:${containerEnv:PATH}",
+    "PROJECT": "${containerWorkspaceFolderBasename}",
+    "WORKDIR": "${containerWorkspaceFolder}",
+    "SYNC_LOCALHOST_KUBECONFIG": "true"
+  },
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker-host.sock",
+    "source=${localEnv:HOME}/.kube,target=/usr/local/share/kube-localhost,type=bind",
+  ],
 	"extensions": [
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "ms-python.python",
+    "ms-azuretools.vscode-docker",
+    "redhat.vscode-yaml",
+    "ms-kubernetes-tools.vscode-kubernetes-tools"
   ],
 }
