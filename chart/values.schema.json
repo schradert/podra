@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "required": [
+    "logs"
+  ],
+  "properties": {
+    "logs": {
+      "type": "object",
+      "required": [
+        "size",
+        "name"
+      ],
+      "properties": {
+        "size": {
+          "type": "string",
+          "pattern": "^\\d{1,3}[EPTGMK]i?$"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[a-zA-Z-]+$"
+        }
+      }
+    }
+  }
+}

@@ -1,14 +1,18 @@
 apiVersion: v2
-name: chart
-description: A Helm chart for deploying Podra
+name: podra
 type: application
+icon: https://storage.googleapis.com/sandbox_main_bucket/podra/icon.svg
 version: 0.1.0
 appVersion: 0.1.0
+home: https://github.com/schradert/podra
+description: A Helm chart for deploying Podra
 dependencies:
   - name: kafka
-    version: "13.1.4"
+    version: ~14.1.0
     repository: https://charts.bitnami.com/bitnami
   - name: postgresql
-    version: "10.8.0"
+    version: ~10.9.6
     repository: https://charts.bitnami.com/bitnami
-    
+  - name: airflow
+    version: ~1.1.0
+    repository: https://airflow.apache.org

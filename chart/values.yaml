@@ -1,4 +1,21 @@
+
 postgresql:
-  postgresqlUsername: admin
+  enabled: true
+  postgresqlPassword: postgres
+  postgresqlUsername: postgres
   existingSecret: postgresql-secret
-  postgresqlDatabase: shlif-ingestion
+  postgresqlDatabase: podra-ingestion
+
+airflow:
+  defaultAirflowRepository: podra-airflow-spark
+  defaultAirflowTag: "1.0.1"
+  airflowVersion: "2.1.3"
+  executor: "KubernetesExecutor"
+  logs:
+    persistence:
+      enabled: true
+      existingClaim: airflow-logs
+
+logs:
+  size: 1Gi
+  name: airflow-logs

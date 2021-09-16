@@ -1,9 +1,12 @@
 dependencies:
 - name: kafka
   repository: https://charts.bitnami.com/bitnami
-  version: 13.1.4
+  version: 14.1.0
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
-  version: 10.8.0
-digest: sha256:eea060c2c488b385661d3ff62afde85799f6eed6e3e78e05b513291cbc023e8f
-generated: "2021-07-30T17:16:05.2603642-07:00"
+  version: 10.9.6
+- name: airflow
+  repository: https://airflow.apache.org
+  version: 1.1.0
+digest: sha256:4c0cf1340c086510baa378070fa28dfe7f9b266073671d6bc35e740d1814e398
+generated: "2021-09-15T21:53:02.2315421-07:00"
