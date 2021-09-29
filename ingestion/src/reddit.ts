@@ -6,23 +6,6 @@ import format from 'pg-format';
 
 dotenv.config();
 
-type Subreddit = {
-  id: string,
-  name: string
-}
-
-type Post = {
-  id: string,
-  title: string,
-  date: Date,
-  subreddit: Subreddit
-}
-
-type Comment = {
-  id: string,
-  subcomments: Comment[]
-}
-
 class RedditProducer {
 
   client: Pool;
