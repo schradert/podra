@@ -23,14 +23,6 @@
     "files.watcherExclude": {
       "**/target": true
     },
-    "emeraldwalk.runonsave": {
-        "commands": [
-            {
-                "match": "ingestion/.*",
-                "cmd": "${env.WORKDIR}/ingestion/node_modules/.bin/prettier ${file} --write"
-            }
-        ]
-    },
     "typescript.tsdk": "../ingestion/node_modules/typescript/lib"
   }
 }
