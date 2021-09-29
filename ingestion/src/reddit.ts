@@ -1,18 +1,44 @@
-import snoowrap from 'snoowrap';
-import { Kafka, Producer } from 'kafkajs';
+import snoowrap, { SnoowrapOptions } from 'snoowrap';
+import { Kafka, Producer, logLevel, Message, CompressionTypes } from 'kafkajs';
 import dotenv from 'dotenv';
 import { Pool } from 'pg';
 import format from 'pg-format';
+import { Reddit } from './types';
+
+// TODO: add the following scopes to AuthConfiguration where necessary
+// scope: ['subscribe', 'mysubreddits', 'read', 'identity', 'history']
 
 dotenv.config();
 
-class RedditProducer {
+/**
+ * 
+ */
+export default class RedditProducer {
     client: Pool;
     requester: snoowrap;
     producer: Producer;
-    posts: Post[];
+    posts: Reddit.Post[];
+    debug: boolean;
 
-    constructor() {
+    static env2ConfigNameMapping: SnoowrapOptions = {
+        userAgent: 'REDDIT_PRODUCER_AGENT_STRING',
+        clientId: 'REDDIT_PRODUCER_API_KEY',
+        clientSecret: 'REDDIT_PRODUCER_API_SECRET',
+        username: 'REDDIT_PRODUCER_USERNAME',
+        password: 'REDDIT_PRODUCER_PASSWORD',
+    };
+    static defaultConfigOptions: Reddit.ConfigOptions = {
+        redditConfig: {},
+        debug: false,
+    };
+
+    constructor(
+        {
+            redditConfig,
+            debug,
+        } = RedditProducer.defaultConfigOptions
+    ) {
+        this.debug = debug;
         this.client = new Pool({
             user: 'admin',
             host: 'pod/podra-postgresql-0',
@@ -21,21 +47,35 @@ class RedditProducer {
             port: 5432,
         });
         this.requester = new snoowrap({
-            userAgent: process.env.REDDIT_PRODUCER_AGENT_STRING,
-            clientId: process.env.REDDIT_PRODUCER_API_KEY,
-            clientSecret: process.env.REDDIT_PRODUCER_API_SECRET,
-            username: process.env.REDDIT_PRODUCER_USERNAME,
-            password: process.env.REDDIT_PRODUCER_PASSWORD,
-            // scope: ['subscribe', 'mysubreddits', 'read', 'identity', 'history'],
+            ...this.getRedditConfig(),
+            ...redditConfig,
         });
         this.producer = new Kafka({
-            clientId: 'podra-reddit-updater',
+            logLevel: this.debug ? logLevel.DEBUG : logLevel.INFO,
+            clientId: 'podra-reddit-ingestor',
             brokers: ['service/podra-kafka:9092'],
         }).producer();
         this.posts = [];
     }
 
-    private _getOld_<T>(queryString: string): T[] {
+    private getRedditConfig(): SnoowrapOptions {
+        const config = { ...RedditProducer.env2ConfigNameMapping };
+
+        Object.entries(config).forEach(
+            ([confKey, envKey]: [keyof SnoowrapOptions, string]) => {
+                const envVar = process.env[envKey];
+                if (envVar === '')
+                    throw new Error(
+                        `${envKey} is not defined in running process.`
+                    );
+                config[confKey] = envVar;
+            }
+        );
+
+        return config;
+    }
+
+    private getOld<T>(queryString: string): T[] {
         let oldOnes: T[];
         this.client.query(queryString, (err, res) => {
             console.log(`Response: ${res}`);
@@ -48,20 +88,52 @@ class RedditProducer {
         return oldOnes;
     }
 
-    getOldSubreddits(): Subreddit[] {
-        return this._getOld_(`
-      SELECT id, name
-      FROM subreddit
-      ORDER BY name
-    `);
+    private generatePostMessages(): Message[] {
+        return this.posts.map(post => ({
+            value: JSON.stringify(post)
+        }));
     }
 
-    getOldSubredditPosts(subreddit: Subreddit): Post[] {
-        return this._getOld_(`
-      SELECT id
-      FROM posts
-      WHERE subreddit = ${subreddit.id}
-    `);
+    async sendData(): Promise<void> {
+        try {
+            const metadata = await this.producer.send({
+                topic: 'ingestion-reddit-posts',
+                compression: CompressionTypes.GZIP,
+                messages: this.generatePostMessages()
+            });
+            metadata.forEach(console.log);
+        } catch (err) {
+            console.error(`[ingestor/reddit/sendData] ${err.message}`, err);
+            return Promise.reject('Send failed!');
+        }
+    }
+
+    async run(): Promise<void> {
+        try {
+            await this.producer.connect();
+            await this.sendData();
+        } catch (err) {
+            console.error(`[ingestion/reddit/run] ${err.message}`, err);
+            return Promise.reject('Run failed!');
+        } finally {
+            await this.producer.disconnect();
+        }
+    }
+
+    getOldSubreddits(): Reddit.Subreddit[] {
+        return this.getOld(`
+            SELECT id, name
+            FROM subreddit
+            ORDER BY name
+        `);
+    }
+
+    getOldSubredditPosts(subreddit: Reddit.Subreddit): Reddit.Post[] {
+        return this.getOld(`
+            SELECT id
+            FROM posts
+            WHERE subreddit = ${subreddit.id}
+        `);
     }
 
     updateSubreddits(): void {
@@ -75,7 +147,7 @@ class RedditProducer {
                         ({
                             id: sub.id,
                             name: sub.display_name_prefixed,
-                        } as Subreddit)
+                        } as Reddit.Subreddit)
                 )
         );
 
@@ -102,7 +174,7 @@ class RedditProducer {
         });
     }
 
-    async updateSubredditPosts(subreddit: Subreddit): Promise<void> {
+    async updateSubredditPosts(subreddit: Reddit.Subreddit): Promise<void> {
         const oldPosts = new Set(this.getOldSubredditPosts(subreddit));
         const newPosts = new Set(
             (await this.requester.getSubreddit(subreddit.id).getNew()).map(
@@ -112,7 +184,7 @@ class RedditProducer {
                         title: post.title,
                         date: new Date(post.created),
                         subreddit,
-                    } as Post)
+                    } as Reddit.Post)
             )
         );
 
