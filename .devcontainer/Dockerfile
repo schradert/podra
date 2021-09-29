@@ -14,6 +14,11 @@ RUN \
     ln -s python3.9 /usr/bin/python; \
     pip install --upgrade pip; \
     pip install apache-airflow; \
+    # Install Java & Scala
+    apk add --no-cache openjdk11; \
+    SBT=https://github.com/sbt/sbt/releases/download/v1.5.5/sbt-1.5.5.tgz; \
+    curl -fsSL $SBT | tar xvz -C /usr/lib; \
+    ln -s /usr/lib/sbt/bin/sbt /usr/bin/sbt; \
     # Install kubectl
     KUBECTL_URI=https://storage.googleapis.com/kubernetes-release/release/; \
     KUBECTL_VER=$(curl -s $KUBE_RELEASE_URI/stable.txt); \
@@ -24,6 +29,8 @@ RUN \
     HELM=https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3; \
     curl -s $HELM | bash -;
 
-COPY .devcontainer/copy-kubeconfig.sh /usr/local/share/
+ENV JAVA_HOME=/usr/lib/jvm/default-jvm/jre
+
+COPY copy-kubeconfig.sh /usr/local/share/
 RUN KUBECONFIG_SOURCE=/usr/local/share/copy-kubeconfig.sh; \
-    echo $KUBECONFIG_SOURCE | tee -a /root/.bashrc >> /root/.zshrc
+    echo $KUBECONFIG_SOURCE | tee -a /root/.bashrc /home/vscode/.bashrc /root/.zshrc >> /home/vscode/.zshrc
