@@ -1,16 +1,25 @@
-declare type Subreddit = {
-    id: string;
-    name: string;
-};
+import { SnoowrapOptions } from 'snoowrap';
 
-declare type Post = {
-    id: string;
-    title: string;
-    date: Date;
-    subreddit: Subreddit;
-};
+declare namespace Reddit {
+    export type Subreddit = {
+        id: string;
+        name: string;
+    };
 
-declare type PostComment = {
-    id: string;
-    subcomments: PostComment[];
-};
+    export type Post = {
+        id: string;
+        title: string;
+        date: Date;
+        subreddit: Subreddit;
+    };
+
+    export type PostComment = {
+        id: string;
+        subcomments: PostComment[];
+    };
+
+    export type ConfigOptions = {
+        redditConfig?: Partial<SnoowrapOptions>;
+        debug?: boolean;
+    };
+}
