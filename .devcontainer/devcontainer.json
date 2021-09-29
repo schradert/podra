@@ -23,6 +23,7 @@
         "ms-kubernetes-tools.vscode-kubernetes-tools",
         "scalameta.metals",
         "dbaeumer.vscode-eslint",
-        "emeraldwalk.runonsave"
+        "emeraldwalk.runonsave",
+        "gruntfuggly.todo-tree"
     ],
 }
