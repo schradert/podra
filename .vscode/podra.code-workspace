@@ -10,10 +10,10 @@
       "path": "../airflow"
     },
     {
-      "path": "../kafka"
+      "path": "../spark"
     },
     {
-      "path": "../spark"
+      "path": "../ingestion"
     }
   ],
   "settings": {
