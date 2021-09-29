@@ -4,8 +4,8 @@
     "description": "",
     "main": "producers/reddit.js",
     "scripts": {
-        "build": "tsc -p .",
-        "build:watch": "npm run build -- -w",
+        "build": "tsc",
+        "build:watch": "yarn build -- -w",
         "lint": "eslint .",
         "format": "prettier . --write"
     },

@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "noEmit": true,
+        "strict": true,
         "noImplicitAny": true,
-        "alwaysStrict": true,
         "esModuleInterop": true,
         "downlevelIteration": true,
         "experimentalDecorators": true

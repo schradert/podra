@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { Pool } from 'pg';
 import format from 'pg-format';
 import { Reddit } from './types';
+import { isErr } from './utils';
 
 // TODO: add the following scopes to AuthConfiguration where necessary
 // scope: ['subscribe', 'mysubreddits', 'read', 'identity', 'history']
@@ -33,7 +34,7 @@ export default class RedditProducer {
     };
 
     constructor({ redditConfig, debug } = RedditProducer.defaultConfigOptions) {
-        this.debug = debug;
+        this.debug = !!debug;
         this.client = new Pool({
             user: 'admin',
             host: 'pod/podra-postgresql-0',
@@ -57,13 +58,16 @@ export default class RedditProducer {
         const config = { ...RedditProducer.env2ConfigNameMapping };
 
         Object.entries(config).forEach(
-            ([confKey, envKey]: [keyof SnoowrapOptions, string]) => {
+            ([confKey, envKey]) => {
                 const envVar = process.env[envKey];
-                if (envVar === '')
+                if (envVar === undefined) {
                     throw new Error(
                         `${envKey} is not defined in running process.`
                     );
-                config[confKey] = envVar;
+                }
+                
+                // the value is generated from config above, so will NOT fail!
+                config[confKey as keyof typeof config] = envVar;
             }
         );
 
@@ -71,7 +75,7 @@ export default class RedditProducer {
     }
 
     private getOld<T>(queryString: string): T[] {
-        let oldOnes: T[];
+        let oldOnes: T[] = [];
         this.client.query(queryString, (err, res) => {
             console.log(`Response: ${res}`);
             console.log(`Error: ${err}`);
@@ -98,8 +102,10 @@ export default class RedditProducer {
             });
             metadata.forEach(console.log);
         } catch (err) {
-            console.error(`[ingestor/reddit/sendData] ${err.message}`, err);
-            return Promise.reject('Send failed!');
+            if (isErr(err)) {
+                console.error(`[ingestor/reddit/sendData] ${err.message}`, err);
+                return Promise.reject('Send failed!');
+            }
         }
     }
 
@@ -114,8 +120,10 @@ export default class RedditProducer {
             await this.producer.connect();
             await this.sendData();
         } catch (err) {
-            console.error(`[ingestion/reddit/run] ${err.message}`, err);
-            return Promise.reject('Run failed!');
+            if (isErr(err)) {
+                console.error(`[ingestion/reddit/run] ${err.message}`, err);
+                return Promise.reject('Run failed!');
+            }
         } finally {
             await this.producer.disconnect();
         }
