@@ -11,7 +11,7 @@ import { Reddit } from './types';
 dotenv.config();
 
 /**
- * 
+ *
  */
 export default class RedditProducer {
     client: Pool;
@@ -32,12 +32,7 @@ export default class RedditProducer {
         debug: false,
     };
 
-    constructor(
-        {
-            redditConfig,
-            debug,
-        } = RedditProducer.defaultConfigOptions
-    ) {
+    constructor({ redditConfig, debug } = RedditProducer.defaultConfigOptions) {
         this.debug = debug;
         this.client = new Pool({
             user: 'admin',
@@ -90,7 +85,7 @@ export default class RedditProducer {
 
     private generatePostMessages(): Message[] {
         return this.posts.map(post => ({
-            value: JSON.stringify(post)
+            value: JSON.stringify(post),
         }));
     }
 
@@ -99,7 +94,7 @@ export default class RedditProducer {
             const metadata = await this.producer.send({
                 topic: 'ingestion-reddit-posts',
                 compression: CompressionTypes.GZIP,
-                messages: this.generatePostMessages()
+                messages: this.generatePostMessages(),
             });
             metadata.forEach(console.log);
         } catch (err) {
@@ -109,6 +104,12 @@ export default class RedditProducer {
     }
 
     async run(): Promise<void> {
+        this.updateSubreddits();
+        const subreddits = this.getOldSubreddits();
+        subreddits.forEach(subreddit => {
+            this.updateSubredditPosts(subreddit);
+        });
+
         try {
             await this.producer.connect();
             await this.sendData();
