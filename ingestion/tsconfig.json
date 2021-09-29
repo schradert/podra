@@ -1,11 +1,11 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "noImplicitAny": true,
-    "alwaysStrict": true,
-    "esModuleInterop": true,
-    "downlevelIteration": true,
-    "experimentalDecorators": true
-  },
-  "include": ["src"],
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "alwaysStrict": true,
+        "esModuleInterop": true,
+        "downlevelIteration": true,
+        "experimentalDecorators": true
+    },
+    "include": ["src"]
 }

@@ -1,26 +1,28 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.194.0/containers/alpine
 {
-	"name": "Podra",
-  "dockerFile": "Dockerfile",
-	"forwardPorts": [3000],
-	"remoteUser": "vscode",
-  "remoteEnv": {
-    "PATH": "${containerEnv:HOME}/.yarn/bin:${containerEnv:PATH}",
-    "PROJECT": "${containerWorkspaceFolderBasename}",
-    "WORKDIR": "${containerWorkspaceFolder}",
-    "SYNC_LOCALHOST_KUBECONFIG": "true"
-  },
-  "mounts": [
-    "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind",
-    "source=${env:HOME}${env:USERPROFILE}/.kube,target=/usr/local/share/kube-localhost,type=bind",
-  ],
-	"extensions": [
-    "esbenp.prettier-vscode",
-    "ms-python.python",
-    "ms-azuretools.vscode-docker",
-    "redhat.vscode-yaml",
-    "ms-kubernetes-tools.vscode-kubernetes-tools",
-    "scalameta.metals"
-  ],
+    "name": "Podra",
+    "dockerFile": "Dockerfile",
+        "forwardPorts": [3000],
+        "remoteUser": "vscode",
+    "remoteEnv": {
+        "PATH": "${containerEnv:HOME}/.yarn/bin:${containerEnv:PATH}",
+        "PROJECT": "${containerWorkspaceFolderBasename}",
+        "WORKDIR": "${containerWorkspaceFolder}",
+        "SYNC_LOCALHOST_KUBECONFIG": "true"
+    },
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind",
+        "source=${env:HOME}${env:USERPROFILE}/.kube,target=/usr/local/share/kube-localhost,type=bind",
+    ],
+        "extensions": [
+        "esbenp.prettier-vscode",
+        "ms-python.python",
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "scalameta.metals",
+        "dbaeumer.vscode-eslint",
+        "emeraldwalk.runonsave"
+    ],
 }
