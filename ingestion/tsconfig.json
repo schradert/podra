@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "commonjs",
     "noImplicitAny": true,
     "alwaysStrict": true,
     "esModuleInterop": true,
     "downlevelIteration": true,
     "experimentalDecorators": true
   },
-  "include": ["producers", "consumers"],
-  "exclude": ["dist"]
+  "include": ["src"],
 }
