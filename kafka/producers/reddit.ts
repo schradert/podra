@@ -33,8 +33,8 @@ class RedditProducer {
   constructor() {
     this.client = new Pool({
       user: 'admin',
-      host: 'pod/shlif-postgresql-0',
-      database: 'shlif-ingestion',
+      host: 'pod/podra-postgresql-0',
+      database: 'podra-ingestion',
       password: process.env.POSTGRES_PASSWORD,
       port: 5432
     });
@@ -47,8 +47,8 @@ class RedditProducer {
       // scope: ['subscribe', 'mysubreddits', 'read', 'identity', 'history'],
     });
     this.producer = new Kafka({
-      clientId: 'shlif-reddit-updater',
-      brokers: ['service/shlif-kafka:9092']
+      clientId: 'podra-reddit-updater',
+      brokers: ['service/podra-kafka:9092']
     }).producer();
     this.posts = [];
   }

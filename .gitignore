@@ -8,3 +8,9 @@ data/
 dist/
 yarn-error.log
 chart/charts/*.tgz
+.metals/
+.bloop/
+.bsp/
+target/
+spark/project/project/
+metals.sbt
