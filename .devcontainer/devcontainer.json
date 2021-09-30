@@ -12,7 +12,7 @@
         "SYNC_LOCALHOST_KUBECONFIG": "true"
     },
     "mounts": [
-        "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind",
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
         "source=${env:HOME}${env:USERPROFILE}/.kube,target=/usr/local/share/kube-localhost,type=bind",
     ],
         "extensions": [
