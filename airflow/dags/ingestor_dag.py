@@ -15,15 +15,16 @@ with DAG(
 ) as dag:
     kube = KubernetesPodOperator(
         namespace='default',
-        image='node:14-alpine',
+        image='podra/ingestor:0.0.1',
         cmds=['bash', '-cx'],
-        arguments=['yarn', 'start'],
+        arguments=['yarn', 'prod'],
         labels={'zone': 'ingestion'},
         secrets=[
-            Secret('env', 'REDDIT_TOKEN', 'ingestor-secrets')
+            Secret('env', 'POSTGRES_PASSWORD', 'postgresql-secret', key='postgresql-password'),
+            Secret('volume', '.reddit.env', 'reddit-secret')
         ],
         ports=[k8s.V1ContainerPort(name='http', container_port=80)],
-        name='ingestion-pod',
+        name='ingestion',
         task_id='ingestion',
         is_delete_operator_pod=True,
         in_cluster=True,
