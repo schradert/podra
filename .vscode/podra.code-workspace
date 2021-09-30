@@ -26,7 +26,7 @@
     "files.watcherExclude": {
         "**/target": true
     },
-    "typescript.tsdk": "../ingestion/node_modules/typescript/lib",
+    "typescript.tsdk": "./ingestion/node_modules/typescript/lib",
     "emeraldwalk.runonsave": {
         "commands": [
             {
