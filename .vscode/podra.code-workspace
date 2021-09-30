@@ -4,13 +4,16 @@
       "path": ".."
     },
     {
-      "path": "../pwa"
+        "path": "../chart"
     },
     {
       "path": "../airflow"
     },
     {
       "path": "../spark"
+    }, 
+    {
+      "path": "../pwa"
     },
     {
       "path": "../ingestion"
@@ -21,8 +24,16 @@
       "https://raw.githubusercontent.com/rancher/k3d/main/pkg/config/v1alpha2/schema.json": "k3d-cluster.yaml",
     },
     "files.watcherExclude": {
-      "**/target": true
+        "**/target": true
     },
-    "typescript.tsdk": "../ingestion/node_modules/typescript/lib"
+    "typescript.tsdk": "../ingestion/node_modules/typescript/lib",
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.sh$",
+                "cmd": "npx -g prettier ${file} --write"
+            }
+        ]
+    }
   }
 }
