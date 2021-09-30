@@ -24,6 +24,7 @@
         "scalameta.metals",
         "dbaeumer.vscode-eslint",
         "emeraldwalk.runonsave",
-        "gruntfuggly.todo-tree"
+        "gruntfuggly.todo-tree",
+        "kakumei.ts-debug"
     ],
 }
