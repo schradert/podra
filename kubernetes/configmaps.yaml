@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: podra-versions
+data:
+  INGESTOR_VERSION: 0.0.1
+  ORCHESTRATOR_VERSION: 0.0.1
+  TRANSFORMER_VERSION: 0.0.1
+  LOADER_VERSION: 0.0.1
