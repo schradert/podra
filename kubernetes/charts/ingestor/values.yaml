@@ -1,0 +1,11 @@
+
+postgresql:
+  enabled: true
+  postgresqlPassword: postgres
+  postgresqlUsername: postgres
+  existingSecret: postgresql-secret
+  postgresqlDatabase: podra-ingestion
+
+logging:
+  size: 1Mi
+  name: ingestor-logs

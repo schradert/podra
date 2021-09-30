@@ -1,0 +1,15 @@
+apiVersion: v2
+name: ingestor
+type: application
+icon: https://storage.googleapis.com/sandbox_main_bucket/podra/icon.svg
+version: 0.0.1
+appVersion: 0.0.1
+home: https://github.com/schradert/podra/tree/main/kubernetes/charts/ingestor
+description: A Helm chart for deploying Podra Ingestor
+dependencies:
+  - name: postgresql
+    version: ~10.12.0
+    repository: https://charts.bitnami.com/bitnami
+  - name: logging
+    version: ~0.0.1
+    repository: file://../logging

@@ -1,0 +1,12 @@
+apiVersion: v2
+name: loader
+type: application
+icon: https://storage.googleapis.com/sandbox_main_bucket/podra/icon.svg
+version: 0.0.1
+appVersion: 0.0.1
+home: https://github.com/schradert/podra/tree/main/kubernetes/charts/loader
+description: A Helm chart for deploying Podra Loader
+dependencies:
+  - name: logging
+    version: ~0.0.1
+    repository: file://../logging

@@ -1,0 +1,15 @@
+apiVersion: v2
+name: transformer
+type: application
+icon: https://storage.googleapis.com/sandbox_main_bucket/podra/icon.svg
+version: 0.0.1
+appVersion: 0.0.1
+home: https://github.com/schradert/podra/tree/main/kubernetes/charts/transformer
+description: A Helm chart for deploying Podra Transformer
+dependencies:
+  - name: spark
+    version: ~5.7.3
+    repository: https://charts.bitnami.com/bitnami
+  - name: logging
+    version: ~0.0.1
+    repository: file://../logging

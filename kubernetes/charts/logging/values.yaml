@@ -1,0 +1,3 @@
+logs:
+  size: 1Mi
+  name: logs

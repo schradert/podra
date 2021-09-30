@@ -1,6 +1,0 @@
-.git/
-.gitignore
-*.tmp
-.vscode/
-node_modules/
-k3d-cluster.yaml

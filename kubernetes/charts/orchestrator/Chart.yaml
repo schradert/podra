@@ -1,0 +1,15 @@
+apiVersion: v2
+name: orchestrator
+type: application
+icon: https://storage.googleapis.com/sandbox_main_bucket/podra/icon.svg
+version: 0.0.1
+appVersion: 0.0.1
+home: https://github.com/schradert/podra/tree/main/kubernetes/charts/orchestrator
+description: A Helm chart for deploying Podra Orchestrator
+dependencies:
+  - name: airflow
+    version: ~1.2.0
+    repository: https://airflow.apache.org
+  - name: logging
+    version: ~0.0.1
+    repository: file://../logging
