@@ -21,12 +21,13 @@ curl -fsSL $SBT | tar xvz -C /usr/lib
 ln -s /usr/lib/sbt/bin/sbt /usr/bin/sbt
 
 # Install kubectl
-KUBECTL_URI=https://storage.googleapis.com/kubernetes-release/release/
-KUBECTL_VER=$(curl -s $KUBE_RELEASE_URI/stable.txt)
+KUBECTL_URI=https://storage.googleapis.com/kubernetes-release/release
+KUBECTL_VER=$(curl -s $KUBECTL_URI/stable.txt)
 KUBECTL=/usr/local/bin/kubectl
 curl -sSL -o $KUBECTL $KUBECTL_URI/$KUBECTL_VER/bin/linux/amd64/kubectl
 chmod +x $KUBECTL
 
 # Install Helm
+apk add --no-cache openssl
 HELM=https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-curl -s $HELM | bash -
+wget -4 $HELM -O - | bash
