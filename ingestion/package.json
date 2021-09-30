@@ -4,7 +4,8 @@
     "description": "",
     "main": "producers/reddit.js",
     "scripts": {
-        "start": "ts-node src/index.ts",
+        "dev": "ts-node src/index.ts",
+        "prod": "node dist/index.js",
         "build": "tsc",
         "build:watch": "yarn build -- -w",
         "lint": "eslint .",
