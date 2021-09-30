@@ -9,7 +9,6 @@ RUN apk update; \
 
 ENV JAVA_HOME=/usr/lib/jvm/default-jvm/jre
 
+ARG KUBECONFIG_SOURCE=/usr/local/share/copy-kubeconfig.sh
 COPY copy-kubeconfig.sh /usr/local/share/
-RUN KUBECONFIG_SOURCE=/usr/local/share/copy-kubeconfig.sh \
-    echo $KUBECONFIG_SOURCE | tee -a \
-    /root/.bashrc /home/vscode/.bashrc /root/.zshrc >> /home/vscode/.zshrc
+RUN echo "source $KUBECONFIG_SOURCE" | tee -a /home/vscode/.bashrc
