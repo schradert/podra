@@ -145,25 +145,29 @@ export default class RedditProducer {
         `);
     }
 
-    updateSubreddits(): void {
-        const olds = new Set(this.getOldSubreddits());
+    async updateSubreddits(): Promise<void> {
+        const olds = new Set(this.getOldSubreddits().map(old => JSON.stringify(old)));
         const news = new Set(
-            this.requester
+            await this.requester
                 .getSubscriptions()
                 .fetchAll()
                 .map(
                     sub =>
-                        ({
+                        JSON.stringify(({
                             id: sub.id,
                             name: sub.display_name_prefixed,
-                        } as Reddit.Subreddit)
+                        } as Reddit.Subreddit))
                 )
         );
 
         const toDel = new Set([...olds].filter(old => !news.has(old)));
         const toAdd = new Set([...news].filter(new_ => !olds.has(new_)));
 
-        const delIds = Array.from(toDel).map(sub => sub.id);
+        const delIds = Array.from(toDel).map(sub => {
+            const subObj = JSON.parse(sub);
+            if (!("id" in subObj)) throw new Error(`SerDe failed with ${sub}`);
+            return subObj.id as string;
+        });
         const delString = format(
             'DELETE FROM subreddits WHERE id IN %L',
             delIds
@@ -175,7 +179,7 @@ export default class RedditProducer {
 
         const addString = format(
             'INSERT INTO subreddits (id, name) VALUES %L',
-            Array.from(toAdd)
+            Array.from(toAdd).map(sub => JSON.parse(sub))
         );
         this.client.query(addString, (err, res) => {
             console.log(`Response: ${res}`);
