@@ -25,6 +25,7 @@
         "dbaeumer.vscode-eslint",
         "emeraldwalk.runonsave",
         "gruntfuggly.todo-tree",
-        "kakumei.ts-debug"
+        "kakumei.ts-debug",
+        "eamodio.gitlens"
     ],
 }

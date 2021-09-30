@@ -7,7 +7,7 @@ build/
 data/
 dist/
 yarn-error.log
-chart/charts/*.tgz
+kubernetes/charts/**/charts/*.tgz
 .metals/
 .bloop/
 .bsp/

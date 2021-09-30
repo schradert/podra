@@ -1,27 +1,27 @@
 {
 	"folders": [
     {
-      "path": ".."
-    },
-    {
-        "path": "../chart"
-    },
-    {
       "path": "../airflow"
     },
     {
       "path": "../spark"
-    }, 
-    {
-      "path": "../pwa"
     },
     {
       "path": "../ingestion"
-    }
+    },
+    {
+      "path": "../loader"
+    },
+    {
+      "path": "../pwa"
+    }, 
+    {
+      "path": ".."
+    },
   ],
   "settings": {
     "yaml.schemas": {
-      "https://raw.githubusercontent.com/rancher/k3d/main/pkg/config/v1alpha2/schema.json": "k3d-cluster.yaml",
+      "https://raw.githubusercontent.com/rancher/k3d/main/pkg/config/v1alpha2/schema.json": "kubernetes/k3d-cluster.yaml",
     },
     "files.watcherExclude": {
         "**/target": true
