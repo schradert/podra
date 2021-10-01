@@ -26,6 +26,9 @@
         "emeraldwalk.runonsave",
         "gruntfuggly.todo-tree",
         "kakumei.ts-debug",
-        "eamodio.gitlens"
+        "eamodio.gitlens",
+        "vscjava.vscode-java-pack",
+        "pivotal.vscode-boot-dev-pack",
+        "sonarsource.sonarlint-vscode"
     ],
 }
