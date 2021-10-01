@@ -72,5 +72,23 @@
 			</plugin>
 		</plugins>
 	</build>
+    
 
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-reflect</artifactId>
+                <version>2.13.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>2.13.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
