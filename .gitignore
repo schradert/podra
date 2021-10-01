@@ -1,16 +1,33 @@
+
+### SECRETS ###
 .env
-node_modules/
 secrets.yaml
 credentials.json
-coverage/
 build/
+
+### DEV ###
 data/
-dist/
-yarn-error.log
+
+### HELM ###
 kubernetes/charts/**/charts/*.tgz
+
+### NODE ###
+node_modules/
+yarn-error.log
+coverage/
+dist/
+spark/project/project/
+
+
+### SCALA ###
+metals.sbt
 .metals/
 .bloop/
 .bsp/
+
+
+### JAVA ###
+.classpath
+.project
 target/
-spark/project/project/
-metals.sbt
+.settings/
