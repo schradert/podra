@@ -31,3 +31,4 @@ metals.sbt
 .project
 target/
 .settings/
+.factorypath
