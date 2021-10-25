@@ -15,7 +15,7 @@
         "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
         "source=${env:HOME}${env:USERPROFILE}/.kube,target=/usr/local/share/kube-localhost,type=bind",
     ],
-        "extensions": [
+    "extensions": [
         "esbenp.prettier-vscode",
         "ms-python.python",
         "ms-azuretools.vscode-docker",
@@ -29,6 +29,9 @@
         "eamodio.gitlens",
         "vscjava.vscode-java-pack",
         "pivotal.vscode-boot-dev-pack",
-        "sonarsource.sonarlint-vscode"
+        "sonarsource.sonarlint-vscode",
+        "swellaby.vscode-rust-test-adapter",
+        "matklad.rust-analyzer",
+        "tamasfe.even-better-toml"
     ],
 }

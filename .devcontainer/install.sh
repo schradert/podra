@@ -31,3 +31,6 @@ chmod +x $KUBECTL
 apk add --no-cache openssl
 HELM=https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 wget -4 $HELM -O - | bash
+
+# rust-analyzer language server needs source code
+apk add rust-src
