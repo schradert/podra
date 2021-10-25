@@ -1,0 +1,7 @@
+-J-Xss8M
+-J-Xms1G
+-J-Xmx2G
+-J-XX:ReservedCodeCacheSize=1G
+-J-XX:MaxMetaspaceSize=2G
+-J-Duser.country=US
+-J-DUser.language=en
