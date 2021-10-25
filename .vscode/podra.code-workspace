@@ -4,6 +4,9 @@
       "path": "../airflow"
     },
     {
+      "path": "../beam"
+    },
+    {
       "path": "../spark"
     },
     {
@@ -11,6 +14,9 @@
     },
     {
       "path": "../loader"
+    },
+    {
+      "path": "../streamer"
     },
     {
       "path": "../pwa"
@@ -35,6 +41,6 @@
             }
         ]
     },
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
   }
 }
