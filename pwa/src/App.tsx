@@ -45,12 +45,12 @@ export const metaState = createState<AppState>({
     configuring: false,
     integrating: false,
 });
-type authState = {
+type AuthState = {
     token?: string;
 };
-const authState = createState<authState>({});
+const authState = createState<AuthState>({});
 
-export const useAuth = (): State<authState> => useState<authState>(authState);
+export const useAuth = (): State<AuthState> => useState<AuthState>(authState);
 
 const App: FC = () => {
     return (
