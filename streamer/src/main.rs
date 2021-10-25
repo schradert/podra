@@ -1,7 +1,7 @@
 pub mod arrow;
 pub mod cdata;
 pub mod csv;
-pub mod example;
+// pub mod example;
 pub mod extension;
 pub mod metadata;
 pub mod parquet;
