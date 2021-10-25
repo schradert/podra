@@ -1,0 +1,14 @@
+{
+    "files.watcherExclude": {
+        "**/target": true
+    },
+
+    // https://scalameta.org/metals/docs/editors/user-configuration
+    "metals.sbtScript": "/usr/bin/sbt",
+    "metals.scalafmtConfigPath": ".scalafmt.conf",
+    "metals.scalafixConfigPath": ".scalafix.conf",
+    "metals.bloopSbtAlreadyInstalled": false,
+    "metals.showImplicitArguments": false,
+    "metals.showImplicitConversionsAndClasses": false,
+    "metals.superMethodLensesEnabled": true
+}
