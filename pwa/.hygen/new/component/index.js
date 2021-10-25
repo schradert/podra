@@ -16,7 +16,7 @@ module.exports = {
             .prompt(questions)
             .then(answers => {
                 const { component_name, dir } = answers;
-                const path = `${dir ? `${dir}/` : ``}${component_name}`;
+                const path = `${dir ? dir + '/' : ""}${component_name}`;
                 const absPath = `src/components/${path}`;
                 return { ...answers, path, absPath };
             })

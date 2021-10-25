@@ -76,7 +76,8 @@
   },
   "prettier": {
     "printWidth": 80,
-    "semi": true
+    "semi": true,
+    "tabWidth": 4
   },
   "dependencies": {
     "@hookstate/core": "^3.0.11",
